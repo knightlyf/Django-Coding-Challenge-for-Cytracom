@@ -1,0 +1,23 @@
+name: Sync to Azure DevOps
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code from GitHub
+        uses: actions/checkout@V2
+
+      - name: Sync code to Azure Repos
+        run: |
+          git config --global knightlyf "github-actions[bot]"
+          git config --global varunhydra01@gmail.com "github-actions[bot]@users.noreply.github.com"
+          git remote add azure https://Hydra-Industries@dev.azure.com/Hydra-Industries/TestProj/_git/TestProj
+          git push azure HEAD:refs/heads/master
+
+        env:
+          AZURE_SYNC_PAT: ${{ secrets.AZURE_SYNC_PAT}}
