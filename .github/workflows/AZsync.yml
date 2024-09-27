@@ -12,11 +12,16 @@ jobs:
       - name: Checkout code from GitHub
         uses: actions/checkout@v2
 
-      - name: Sync code to Azure Repos
+      - name: Configure Git user
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch and merge remote changes from Azure Repos
+        run: |
           git remote add azure https://Hydra-Industries:${{ secrets.AZURE_SYNC_PAT }}@dev.azure.com/Hydra-Industries/TestProj/_git/TestProjNew
+          git fetch azure main
+          git merge azure/main
           git push azure HEAD:refs/heads/main
 
         env:
