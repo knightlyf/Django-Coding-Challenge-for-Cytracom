@@ -21,7 +21,7 @@ jobs:
         run: |
           git remote add azure https://Hydra-Industries:${{ secrets.AZURE_SYNC_PAT }}@dev.azure.com/Hydra-Industries/TestProj/_git/TestProjNew
           git fetch azure main
-          git merge azure/main
+          git merge azure/main --allow-unrelated-histories
           git push azure HEAD:refs/heads/main
 
         env:
