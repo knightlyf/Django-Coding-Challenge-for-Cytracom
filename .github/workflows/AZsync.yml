@@ -20,8 +20,8 @@ jobs:
       - name: Fetch and merge remote changes from Azure Repos
         run: |
           git remote add azure https://Hydra-Industries:${{ secrets.AZURE_SYNC_PAT }}@dev.azure.com/Hydra-Industries/TestProj/_git/TestProj
-          git fetch azure main
-          git merge azure/main --allow-unrelated-histories -s ours
+          git fetch azure master
+          git merge azure/master --allow-unrelated-histories -s ours
           git push azure HEAD:refs/heads/master
 
         env:
