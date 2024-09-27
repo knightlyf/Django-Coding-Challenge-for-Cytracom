@@ -21,7 +21,7 @@ jobs:
         run: |
           git remote add azure https://Hydra-Industries:${{ secrets.AZURE_SYNC_PAT }}@dev.azure.com/Hydra-Industries/TestProj/_git/TestProj
           git fetch azure master
-          git merge azure/master --allow-unrelated-histories -s ours
+          git merge azure/master --allow-unrelated-histories
           git push azure HEAD:refs/heads/master
 
         env:
